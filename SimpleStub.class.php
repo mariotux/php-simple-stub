@@ -1,4 +1,5 @@
 <?php
+
 /*
  * http://www.pensandoenred.com
  * Copyright (C) 2011 Mario Nunes
@@ -23,9 +24,7 @@ class SimpleStub {
     private $_call = array('name' => null, 'args' => null);
 
     public function __construct($object = null) {
-        if (!is_null($object)) {
-            $this->_object = $object;
-        }
+        $this->_object = $object;
     }
 
     public function __call($name, $arguments) {
@@ -40,5 +39,7 @@ class SimpleStub {
         }
         return $argument;
     }
+
 }
+
 ?>
