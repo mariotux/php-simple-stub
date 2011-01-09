@@ -20,7 +20,7 @@
 class SimpleStub {
 
     private $_object = null;
-    private $_call = array();
+    private $_call = array('name' => null, 'args' => null);
 
     public function __construct($object = null) {
         if (!is_null($object)) {
@@ -29,16 +29,16 @@ class SimpleStub {
     }
 
     public function __call($name, $arguments) {
-        $this->_call = array('name' => $name, 'args' => $arguments);
+        $this->_call['name'] = $name;
+        $this->_call['args'] = $arguments;
         return $this;
     }
 
     public function returnValue($argument) {
         if (method_exists($this->_object, $this->_call['name'])) {
             return call_user_func_array(array($this->_object, $this->_call['name']), $this->_call['args']);
-        } else {
-            return $argument;
         }
+        return $argument;
     }
 }
 ?>
